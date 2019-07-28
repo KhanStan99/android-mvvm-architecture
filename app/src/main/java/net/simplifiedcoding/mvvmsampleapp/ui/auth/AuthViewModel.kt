@@ -1,22 +1,26 @@
 package net.simplifiedcoding.mvvmsampleapp.ui.auth
 
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModel
 import net.simplifiedcoding.mvvmsampleapp.data.repositories.UserRepository
 import net.simplifiedcoding.mvvmsampleapp.util.ApiException
 import net.simplifiedcoding.mvvmsampleapp.util.Coroutines
 import net.simplifiedcoding.mvvmsampleapp.util.NoInternetException
+import java.util.logging.Logger
 
 
 class AuthViewModel(
     private val repository: UserRepository
 ) : ViewModel() {
 
-    var name: String? = null
+    var firstName: String? = null
+    var lastName: String? = null
     var email: String? = null
     var password: String? = null
     var passwordconfirm: String? = null
+    var avatar: String = ""
 
     var authListener: AuthListener? = null
 
@@ -33,12 +37,12 @@ class AuthViewModel(
         Coroutines.main {
             try {
                 val authResponse = repository.userLogin(email!!, password!!)
-                authResponse.user?.let {
+                authResponse.user.let {
                     authListener?.onSuccess(it)
                     repository.saveUser(it)
                     return@main
                 }
-                authListener?.onFailure(authResponse.message!!)
+
             }catch(e: ApiException){
                 authListener?.onFailure(e.message!!)
             }catch (e: NoInternetException){
@@ -64,8 +68,13 @@ class AuthViewModel(
     fun onSignupButtonClick(view: View){
         authListener?.onStarted()
 
-        if(name.isNullOrEmpty()){
-            authListener?.onFailure("Name is required")
+        if(firstName.isNullOrEmpty()){
+            authListener?.onFailure("First Name is required")
+            return
+        }
+
+        if(lastName.isNullOrEmpty()){
+            authListener?.onFailure("Last Name is required")
             return
         }
 
@@ -87,13 +96,12 @@ class AuthViewModel(
 
         Coroutines.main {
             try {
-                val authResponse = repository.userSignup(name!!, email!!, password!!)
-                authResponse.user?.let {
+                val authResponse = repository.userSignup(firstName!!, lastName!!, email!!, password!!, avatar)
+                authResponse.user.let {
                     authListener?.onSuccess(it)
                     repository.saveUser(it)
                     return@main
                 }
-                authListener?.onFailure(authResponse.message!!)
             }catch(e: ApiException){
                 authListener?.onFailure(e.message!!)
             }catch (e: NoInternetException){

@@ -70,9 +70,9 @@
                     android:layout_height="wrap_content">
 
                 <EditText
-                        android:hint="Belal Khan"
+                        android:hint="Hidayat"
                         android:inputType="text"
-                        android:text="@={viewmodel.name}"
+                        android:text="@={viewmodel.firstName}"
                         android:drawablePadding="16dp"
                         android:drawableLeft="@drawable/ic_name"
                         android:background="@drawable/edit_text_round_gray_background"
@@ -82,7 +82,19 @@
                         android:layout_height="match_parent"/>
 
                 <EditText
-                        android:hint="belal@gmail.com"
+                        android:hint="Khan"
+                        android:inputType="text"
+                        android:text="@={viewmodel.lastName}"
+                        android:drawablePadding="16dp"
+                        android:drawableLeft="@drawable/ic_name"
+                        android:background="@drawable/edit_text_round_gray_background"
+                        android:layout_width="match_parent"
+                        android:padding="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:layout_height="match_parent"/>
+
+                <EditText
+                        android:hint="username@domain.com"
                         android:inputType="textEmailAddress"
                         android:drawablePadding="16dp"
                         android:text="@={viewmodel.email}"

@@ -1,6 +1,7 @@
 package net.simplifiedcoding.mvvmsampleapp.data.repositories
 
 import net.simplifiedcoding.mvvmsampleapp.data.db.AppDatabase
+import net.simplifiedcoding.mvvmsampleapp.data.db.entities.LoginInput
 import net.simplifiedcoding.mvvmsampleapp.data.db.entities.User
 import net.simplifiedcoding.mvvmsampleapp.data.network.MyApi
 import net.simplifiedcoding.mvvmsampleapp.data.network.SafeApiRequest
@@ -13,15 +14,17 @@ class UserRepository(
 ) : SafeApiRequest() {
 
     suspend fun userLogin(email: String, password: String): AuthResponse {
-        return apiRequest { api.userLogin(email, password) }
+        return apiRequest { api.userLogin(LoginInput(email, password)) }
     }
 
     suspend fun userSignup(
-        name: String,
+        firstName: String,
+        lastName: String,
         email: String,
-        password: String
+        password: String,
+        avatar: String
     ) : AuthResponse {
-        return apiRequest{ api.userSignup(name, email, password)}
+        return apiRequest{ api.userSignup(firstName, lastName, email, password, avatar)}
     }
 
     suspend fun saveUser(user: User) = db.getUserDao().upsert(user)

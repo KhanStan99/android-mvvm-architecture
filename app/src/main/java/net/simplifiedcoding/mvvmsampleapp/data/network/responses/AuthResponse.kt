@@ -3,7 +3,6 @@ package net.simplifiedcoding.mvvmsampleapp.data.network.responses
 import net.simplifiedcoding.mvvmsampleapp.data.db.entities.User
 
 data class AuthResponse(
-    val isSuccessful : Boolean?,
-    val message: String?,
-    val user: User?
+    val token: String,
+    val user: User
 )

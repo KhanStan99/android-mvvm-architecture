@@ -1,5 +1,7 @@
 package net.simplifiedcoding.mvvmsampleapp.data.network
 
+import net.simplifiedcoding.mvvmsampleapp.data.db.entities.LoginInput
+import net.simplifiedcoding.mvvmsampleapp.data.db.entities.User
 import net.simplifiedcoding.mvvmsampleapp.data.network.responses.AuthResponse
 import net.simplifiedcoding.mvvmsampleapp.data.network.responses.QuotesResponse
 import okhttp3.OkHttpClient
@@ -8,35 +10,32 @@ import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface MyApi {
 
-    @FormUrlEncoded
-    @POST("login")
+    @Headers("Content-Type: application/json")
+    @POST("auth/login")
     suspend fun userLogin(
-        @Field("email") email: String,
-        @Field("password") password: String
-    ) : Response<AuthResponse>
+        @Body input: LoginInput
+    ): Response<AuthResponse>
 
-    @FormUrlEncoded
-    @POST("signup")
+    @POST("auth/signup")
     suspend fun userSignup(
-        @Field("name") name: String,
+        @Field("firstName") first_name: String,
+        @Field("last_name") last_name: String,
         @Field("email") email: String,
-        @Field("password") password: String
-    ) : Response<AuthResponse>
+        @Field("password") password: String,
+        @Field("avatar") avatar: String
+    ): Response<AuthResponse>
 
     @GET("quotes")
-    suspend fun getQuotes() : Response<QuotesResponse>
+    suspend fun getQuotes(): Response<QuotesResponse>
 
-    companion object{
+    companion object {
         operator fun invoke(
             networkConnectionInterceptor: NetworkConnectionInterceptor
-        ) : MyApi{
+        ): MyApi {
 
             val okkHttpclient = OkHttpClient.Builder()
                 .addInterceptor(networkConnectionInterceptor)
@@ -44,7 +43,7 @@ interface MyApi {
 
             return Retrofit.Builder()
                 .client(okkHttpclient)
-                .baseUrl("https://api.simplifiedcoding.in/course-apis/mvvm/")
+                .baseUrl("http://khan-reminder-list.herokuapp.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(MyApi::class.java)
