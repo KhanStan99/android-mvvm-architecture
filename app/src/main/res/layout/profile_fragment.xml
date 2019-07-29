@@ -6,7 +6,7 @@
     <data>
 
         <variable name="viewmodel"
-                  type="net.simplifiedcoding.mvvmsampleapp.ui.home.profile.ProfileViewModel"
+                  type="in.trentweet.reminderlist.ui.home.profile.ProfileViewModel"
         />
 
     </data>

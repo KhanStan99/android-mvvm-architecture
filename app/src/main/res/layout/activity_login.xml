@@ -8,7 +8,7 @@
 
         <variable
                 name="viewmodel"
-                type="net.simplifiedcoding.mvvmsampleapp.ui.auth.AuthViewModel"
+                type="in.trentweet.reminderlist.ui.auth.AuthViewModel"
         />
 
     </data>

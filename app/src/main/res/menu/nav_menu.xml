@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-            android:title="Home"
-            android:id="@+id/profileFragment"
-    />
+    <group>
+        <item
+                android:title="Home"
+                android:id="@+id/profileFragment"
+        />
+
+        <item
+                android:title="Quotes"
+                android:id="@+id/quotesFragment"
+        />
+    </group>
 
     <item
-            android:title="Quotes"
-            android:id="@+id/quotesFragment"
+            android:title="Logout"
+            android:id="@+id/btn_logout"
     />
 
 </menu>
