@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+>
+    <data>
+
+        <variable name="viewmodel"
+                  type="in.trentweet.reminderlist.ui.home.logout.LogoutViewModel"
+        />
+
+    </data>
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+        >
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="Are you sure you want to logout?"/>
+
+            <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Yes"
+                    android:id="@+id/btn_logout_yes"/>
+
+            <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="No"
+                    android:id="@+id/btn_logout_no"/>
+
+        </LinearLayout>
+</layout>

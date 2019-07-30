@@ -7,6 +7,7 @@ import `in`.trentweet.reminderlist.data.preferences.PreferenceProvider
 import `in`.trentweet.reminderlist.data.repositories.QuotesRepository
 import `in`.trentweet.reminderlist.data.repositories.UserRepository
 import `in`.trentweet.reminderlist.ui.auth.AuthViewModelFactory
+import `in`.trentweet.reminderlist.ui.home.logout.LogoutViewModelFactory
 import `in`.trentweet.reminderlist.ui.home.profile.ProfileViewModelFactory
 import `in`.trentweet.reminderlist.ui.home.quotes.QuotesViewModelFactory
 import android.app.Application
@@ -31,6 +32,7 @@ class MVVMApplication : Application(), KodeinAware {
         bind() from singleton { QuotesRepository(instance(), instance(), instance()) }
         bind() from provider { AuthViewModelFactory(instance()) }
         bind() from provider { ProfileViewModelFactory(instance()) }
+        bind() from provider { LogoutViewModelFactory(instance()) }
         bind() from provider { QuotesViewModelFactory(instance()) }
 
 

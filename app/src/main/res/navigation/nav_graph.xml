@@ -11,4 +11,9 @@
     <fragment android:id="@+id/quotesFragment"
               android:name="in.trentweet.reminderlist.ui.home.quotes.QuotesFragment"
               android:label="Quotes" tools:layout="@layout/quotes_fragment"/>
+
+    <dialog android:id="@+id/logoutFragment"
+            tools:layout="@layout/layout_logout_confirm"
+            android:name="in.trentweet.reminderlist.ui.home.logout.LogoutFragment"/>
+
 </navigation>

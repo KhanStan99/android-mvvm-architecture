@@ -13,6 +13,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
+import java.util.concurrent.TimeUnit
 
 interface MyApi {
 
@@ -37,6 +38,7 @@ interface MyApi {
 
             val okkHttpclient = OkHttpClient.Builder()
                 .addInterceptor(networkConnectionInterceptor)
+                .readTimeout(10, TimeUnit.SECONDS)
                 .build()
 
             return Retrofit.Builder()

@@ -15,7 +15,7 @@
 
     <item
             android:title="Logout"
-            android:id="@+id/btn_logout"
+            android:id="@+id/logoutFragment"
     />
 
 </menu>
